@@ -1,0 +1,15 @@
+# Python / environments
+venv/
+__pycache__/
+*.pyc
+
+# Raw data: too large for GitHub, download from the National Water Data Portal
+data/raw/
+
+# MLflow tracking (local only)
+mlruns/
+mlflow.db
+
+# Local database: recreated automatically on first run
+floodguard.db
+floodguard_backup.db
