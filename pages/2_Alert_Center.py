@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-from src.theme import apply_theme
-from src.theme import data_attribution
+from src.theme import apply_theme, data_attribution
+from src.auth import admin_login, is_admin
 from src.database import get_open_alerts, acknowledge_alert, close_alert, sync_alerts
 from models.predict import get_all_stations_status
 
@@ -9,6 +9,10 @@ st.set_page_config(page_title="Alert Center - FloodGuard AI", layout="wide", pag
 apply_theme()
 
 st.title("Alert Center")
+
+admin_login()
+if not is_admin():
+    st.info("View-only mode. Enter the admin password to acknowledge or close alerts.")
 
 
 @st.cache_data(ttl=300)
@@ -43,6 +47,10 @@ else:
             if pd.notna(alert["acknowledged_by"]):
                 st.write(f"**Acknowledged by:** {alert['acknowledged_by']}")
                 st.write(f"**Note:** {alert['notes']}")
+
+            if not is_admin():
+                st.caption("Admin login required to acknowledge or close this alert.")
+                continue
 
             col1, col2 = st.columns(2)
 

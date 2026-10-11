@@ -13,3 +13,4 @@ mlflow.db
 # Local database: recreated automatically on first run
 floodguard.db
 floodguard_backup.db
+.streamlit/secrets.toml
