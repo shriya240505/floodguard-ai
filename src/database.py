@@ -92,8 +92,7 @@ def get_open_alerts():
     """Sabhi 'open' alerts ko ek table me deta hai."""
     conn = get_connection()
     df = pd.read_sql(
-        "SELECT * FROM alerts WHERE status = 'open' ORDER BY severity DESC, opened_at DESC",
-        conn
+        "SELECT * FROM alerts WHERE status = 'open' ORDER BY CASE severity WHEN 'Danger' THEN 1 WHEN 'Warning' THEN 2 ELSE 3 END, opened_at DESC",        conn
     )
     conn.close()
     return df

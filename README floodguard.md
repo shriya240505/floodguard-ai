@@ -102,7 +102,7 @@ The Station Detail page shows SHAP values (TreeExplainer) for the 1-hour model a
 3. **Interpolated values are not flagged** in the data.
 4. **Nearest-station rainfall matching** ignores upstream and downstream relationships between stations.
 5. **Thresholds are statistical, not official** (see above).
-6. **No authentication.** Alert actions and threshold edits record whatever name is typed in; the audit log does not prove who made a change.
+6. **Basic access control only.** Alert actions and threshold edits require one shared admin password (stored in Streamlit Secrets). There are no individual accounts, so names typed into the audit log are not verified, and there is no limit on password attempts.
 7. **Open alerts keep their original severity** if thresholds are edited afterwards.
 8. **Analytics numbers are typed into the page**, copied from the MLflow run. Retraining does not update that table automatically.
 9. **Single run, single split.** No cross-validation or confidence intervals.
